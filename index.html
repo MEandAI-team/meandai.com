@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCEAN X - Animated Coming Soon</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* ================================================= */
+        /* === GLOBAL & VIDEO STYLES (REQUIRED FOR LAYOUT) === */
+        /* ================================================= */
+        
+        /* Ensures the entire page takes up the full screen height */
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbars when content is full-screen */
+        }
+        
+        /* 💡 VIDEO FILL CSS: This block ensures the background video covers the entire div */
+        .video-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0; /* Ensures video stays behind text */
+            /* Moves the video element back by half its width/height to center it */
+            transform: translate(-50%, -50%); 
+            object-fit: cover;
+        }
+
+        /* Custom Colors (Used Tailwind's ability to define custom values) */
+        .color-primary {
+            background-color: #1C3A3F; /* Dark Teal background color */
+        }
+        .text-primary {
+            color: #1C3A3F; /* Dark Teal text color for the button */
+        }
+
+        /* ==================================== */
+        /* === CUSTOM KEYFRAME ANIMATIONS === */
+        /* ==================================== */
+
+        /* 1. Animation for content to fade and move up slightly */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0; /* Start invisible */
+                transform: translateY(20px); /* Start 20px lower */
+            }
+            to {
+                opacity: 1; /* End fully visible */
+                transform: translateY(0); /* End at original position */
+            }
+        }
+        
+        /* 2. Animation for the logo to subtly scale in */
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8); /* Start 80% size */
+            }
+            to {
+                opacity: 1;
+                transform: scale(1); /* End full size */
+            }
+        }
+
+        /* Tailwind Utility Classes for Animations */
+        .animate-fade-in-up {
+            /* Apply the keyframe animation over 0.8s */
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0; /* Required to ensure element starts invisible before animation begins */
+        }
+        .animate-scale-in {
+            /* Apply the keyframe animation over 1s */
+            animation: scaleIn 1s ease-out forwards;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="flex h-screen">
+
+    <div class="w-1/2 flex flex-col justify-between relative overflow-hidden video-container">
+        
+        <video 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            class="filter grayscale-[50%] brightness-75" /* Applies filters for a moody effect */
+            poster="YOUR_FALLBACK_IMAGE_URL.jpg" /* Image shown if video fails to load */
+        >
+            <source src="YOUR_VIDEO_URL.webm" type="video/webm">
+            <source src="video1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="absolute top-10 left-10 z-10 p-5"> 
+            <span class="text-white text-sm uppercase tracking-wider"></span>
+        </div>
+
+        <div class="flex items-center justify-center h-full z-10 animate-scale-in" style="animation-delay: 0.3s;">
+            <div class="border border-white py-3 px-8 text-white font-serif text-3xl tracking-widest transition duration-300 hover:scale-105">
+                OCEAN <span class="font-bold">X</span>
+            </div>
+        </div>
+       
+        <div class="z-10"></div>
+    </div>
+
+    <div class="w-1/2 color-primary flex flex-col items-center justify-center relative p-10">
+        
+        <div class="text-center text-white">
+            
+            <h1 class="text-5xl md:text-6xl font-light mb-8 tracking-wider animate-fade-in-up" style="animation-delay: 0.5s;">
+                GREAT THINGS <br> ARE COMING
+            </h1>
+            
+            <button id="learnMoreBtn" class="bg-white text-primary font-semibold py-3 px-6 text-sm hover:bg-gray-200 transition duration-300 mb-8 animate-fade-in-up" style="animation-delay: 0.7s;">
+                Learn More
+            </button>
+            
+            <div class="flex justify-center space-x-6 text-2xl animate-fade-in-up" style="animation-delay: 0.9s;">
+                
+                <a href="mailto:info@oceanx.com" class="text-gray-400 hover:text-white transition duration-300 hover:scale-110" aria-label="Email">
+                    <i class="fas fa-envelope"></i> 
+                </a>
+                
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 hover:scale-110" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i> 
+                </a>
+                
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 hover:scale-110" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i> 
+                </a>
+            </div>
+        </div>
+
+        <button class="absolute bottom-5 right-5 w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg hover:scale-105 transition duration-300" aria-label="Chat">
+            <span class="text-xl text-primary">💬</span>
+        </button>
+    </div>
+
+    <script>
+        // Event listener: When the 'Learn More' button is clicked, an alert window pops up.
+        document.getElementById('learnMoreBtn').addEventListener('click', function() {
+            alert('Thanks for your interest! Our site is launching soon. Follow us on social media for updates.');
+        });
+    </script>
+
+</body>
+</html>
